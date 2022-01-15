@@ -31,10 +31,9 @@ opButtons.forEach(button => {
 //calculation
 
 const calculation = {
-    firstValue: 1,
+    firstValue: 9,
     secondValue: 5,
-    operator: "add",
-    awaitingSecondValue: null,
+    operator: "divide",
     evaluate: function () {
         let result = operate(this.firstValue, this.secondValue, this.operator);
         return result;
@@ -45,6 +44,15 @@ function operate(x, y, operator) {
     switch(operator) {
         case 'add':
             return x + y;
+            break;
+        case 'subtract':
+            return x - y;
+            break;
+        case 'multiply':
+            return x * y;
+            break;
+        case 'divide':
+            return x / y;
             break;
     }
 }
