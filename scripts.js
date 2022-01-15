@@ -18,6 +18,9 @@ const opButtons = document.querySelectorAll('button.operator');
 
 opButtons.forEach(button => {
     button.addEventListener('click', () => {
+        if (button.value === "equals") {
+            displayResult.textContent = calculation.evaluate();
+        }
         
     })
 })
@@ -27,3 +30,21 @@ opButtons.forEach(button => {
 
 //calculation
 
+const calculation = {
+    firstValue: 1,
+    secondValue: 5,
+    operator: "add",
+    awaitingSecondValue: null,
+    evaluate: function () {
+        let result = operate(this.firstValue, this.secondValue, this.operator);
+        return result;
+    }
+};
+
+function operate(x, y, operator) {
+    switch(operator) {
+        case 'add':
+            return x + y;
+            break;
+    }
+}
