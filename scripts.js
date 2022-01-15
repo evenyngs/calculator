@@ -35,6 +35,16 @@ function clearAll() {
     displayResult.textContent = 0;
 }
 
+//delete last number inputted
+
+const deleteButton = document.querySelector('button.delete');
+
+deleteButton.addEventListener('click', deleteInput);
+
+function deleteInput() {
+    displayResult.textContent = displayResult.textContent.slice(0, displayResult.textContent.length - 1);
+}
+
 //initialize calculator object
 
 //calculation
