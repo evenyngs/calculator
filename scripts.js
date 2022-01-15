@@ -25,6 +25,15 @@ opButtons.forEach(button => {
     })
 })
 
+//clear display
+
+const clearButton = document.querySelector('button.clear');
+
+clearButton.addEventListener('click', clearAll);
+
+function clearAll() {
+    displayResult.textContent = 0;
+}
 
 //initialize calculator object
 
