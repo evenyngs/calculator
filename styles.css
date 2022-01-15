@@ -8,13 +8,25 @@ body {
 .container {
     margin: 10px auto;
     height: 500px;
-    width: 500px;
+    width: 400px;
     background-color: cadetblue;
 }
 
 .display {
-    height: 50px;
+    padding: 10px;
+    text-align: right;
     background-color: brown;
+}
+
+.input {
+    padding: 6px;
+    background-color: darksalmon;
+}
+
+#result {
+    padding: 6px;
+    height: 40px;
+    background-color: darkslategrey;
 }
 
 .clear {
