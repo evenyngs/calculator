@@ -14,12 +14,14 @@ body {
 
 .display {
     text-align: right;
+    letter-spacing: .1rem;
 }
 
 .input {
-    padding: 6px;
-    padding-right: 36px;
+    height: 20px;
+    padding: 6px 30px;
     font-size: 14px;
+    color: gray;
     background-color: darksalmon;
     border-radius: 10px 10px 0px 0px;
 }
@@ -27,7 +29,7 @@ body {
 #result {
     padding: 6px;
     padding-right: 30px;
-    font-size: 36px;
+    font-size: 32px;
     background-color: orange;
 }
 

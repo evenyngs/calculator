@@ -1,3 +1,4 @@
+const history = document.querySelector('.input');
 const screen = document.querySelector('#result');
 
 // number keys
@@ -18,7 +19,7 @@ numButtons.forEach(button => {
 function displayInput(button) {
     if (screen.textContent === '0') {
         screen.textContent = button.value;
-    } else if (screen.textContent.length < 11) {
+    } else if (screen.textContent.length < 12) {
         screen.textContent += button.value;
     }
 };
@@ -51,8 +52,11 @@ opButtons.forEach(button => {
         
         if (button.value !== 'equals') {
             calculation.operator = button.value;
+            history.textContent = screen.textContent;
+            history.textContent += button.innerText;
         } else if (button.value === "equals") {
             screen.textContent = calculation.evaluate();
+            history.textContent = "";
         }
 
         
