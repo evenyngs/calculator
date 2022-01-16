@@ -1,4 +1,4 @@
-const displayResult = document.querySelector('#result');
+const screen = document.querySelector('#result');
 
 // number keys
 const numButtons = document.querySelectorAll('button.number');
@@ -6,7 +6,7 @@ const numButtons = document.querySelectorAll('button.number');
 numButtons.forEach(button => {
     button.addEventListener('click', () => {
         if (calculation.waiting) {
-            displayResult.textContent = 0;
+            screen.textContent = 0;
             calculation.waiting = false;
         }
 
@@ -14,11 +14,12 @@ numButtons.forEach(button => {
     });
 });
 
+//display takes max 12 digits
 function displayInput(button) {
-    if (displayResult.textContent === '0') {
-        displayResult.textContent = button.value;
-    } else {
-        displayResult.textContent += button.value;
+    if (screen.textContent === '0') {
+        screen.textContent = button.value;
+    } else if (screen.textContent.length < 11) {
+        screen.textContent += button.value;
     }
 };
 
@@ -35,13 +36,13 @@ opButtons.forEach(button => {
 
         if (!calculation.waiting) {
             if (calculation.firstValue === null) {
-                calculation.firstValue = parseFloat(displayResult.textContent);
+                calculation.firstValue = parseFloat(screen.textContent);
                 console.log(calculation.firstValue)
                 console.log(calculation.secondValue)
                 console.log(calculation.operator)
                 calculation.waiting = true;
             } else {
-                calculation.secondValue = parseFloat(displayResult.textContent);
+                calculation.secondValue = parseFloat(screen.textContent);
                 console.log(calculation.firstValue)
                 console.log(calculation.secondValue)
                 console.log(calculation.operator)
@@ -51,7 +52,7 @@ opButtons.forEach(button => {
         if (button.value !== 'equals') {
             calculation.operator = button.value;
         } else if (button.value === "equals") {
-            displayResult.textContent = calculation.evaluate();
+            screen.textContent = calculation.evaluate();
         }
 
         
@@ -66,7 +67,7 @@ const clearButton = document.querySelector('button.clear');
 clearButton.addEventListener('click', clearAll);
 
 function clearAll() {
-    displayResult.textContent = 0;
+    screen.textContent = 0;
 }
 
 //delete last number inputted
@@ -76,10 +77,10 @@ const deleteButton = document.querySelector('button.delete');
 deleteButton.addEventListener('click', deleteInput);
 
 function deleteInput() {
-    if (displayResult.textContent.length > 1) {
-        displayResult.textContent = displayResult.textContent.slice(0, displayResult.textContent.length - 1);
-    } else if (displayResult.textContent.length = 1) {
-        displayResult.textContent = 0;
+    if (screen.textContent.length > 1) {
+        screen.textContent = screen.textContent.slice(0, screen.textContent.length - 1);
+    } else if (screen.textContent.length = 1) {
+        screen.textContent = 0;
     }
 }
 
