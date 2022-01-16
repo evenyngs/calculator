@@ -15,22 +15,21 @@ body {
 .display {
     text-align: right;
     letter-spacing: .1rem;
+    background-color: coral;
+    border-radius: 10px 10px 0px 0px;
 }
 
 .input {
-    height: 20px;
+    height: 18px;
     padding: 6px 30px;
     font-size: 14px;
-    color: gray;
-    background-color: darksalmon;
-    border-radius: 10px 10px 0px 0px;
+    color: darkslategray;
 }
 
 #result {
     padding: 6px;
     padding-right: 30px;
     font-size: 32px;
-    background-color: orange;
 }
 
 .clear {
@@ -43,7 +42,7 @@ body {
 
 .buttons {
     padding: 10px;
-    background-color: coral;
+    background-color: crimson;
     gap: 2px;
     display: grid;
     grid-template: 
@@ -79,5 +78,5 @@ footer {
     bottom: 0;
     width: 100%;
     text-align: center;
-    background-color: crimson;
+    padding: 4px;
 }

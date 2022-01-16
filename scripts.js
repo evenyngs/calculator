@@ -10,7 +10,11 @@ numButtons.forEach(button => {
             screen.textContent = 0;
             calculation.waiting = false;
         }
-
+        if (calculation.equalsPushed) {
+            calculation.lastOperand = null;
+            screen.textContent = 0;
+            calculation.equalsPushed = false;
+        }
         displayInput(button);
     });
 });
@@ -35,28 +39,34 @@ opButtons.forEach(button => {
             return;
         }
 
-        if (!calculation.waiting) {
+        
+
+        if (button.value === 'equals' && calculation.equalsPushed) {
+            calculation.firstValue = parseFloat(screen.textContent);
+            calculation.secondValue = calculation.lastOperand;
+            screen.textContent = calculation.evaluate();
+        } else if (!calculation.waiting) {
             if (calculation.firstValue === null) {
                 calculation.firstValue = parseFloat(screen.textContent);
-                console.log(calculation.firstValue)
-                console.log(calculation.secondValue)
-                console.log(calculation.operator)
-                calculation.waiting = true;
+                
             } else {
                 calculation.secondValue = parseFloat(screen.textContent);
-                console.log(calculation.firstValue)
-                console.log(calculation.secondValue)
-                console.log(calculation.operator)
+                calculation.firstValue = calculation.evaluate();
+                screen.textContent = calculation.firstValue;
+                calculation.lastOperand = calculation.secondValue;
             }
         }
         
         if (button.value !== 'equals') {
             calculation.operator = button.value;
+            calculation.waiting = true;
             history.textContent = screen.textContent;
             history.textContent += button.innerText;
         } else if (button.value === "equals") {
-            screen.textContent = calculation.evaluate();
+            calculation.firstValue = null;
+            calculation.secondValue = null;
             history.textContent = "";
+            calculation.equalsPushed = true;
         }
 
         
@@ -98,6 +108,7 @@ const calculation = {
     operator: null,
     lastOperand: null,
     waiting: false,
+    equalsPushed: false,
     evaluate: function () {
         let result = operate(this.firstValue, this.secondValue, this.operator);
         return result;
@@ -119,7 +130,6 @@ function operate(x, y, operator) {
             return x / y;
             break;
         default:
-            return -1;
-            break;
+            return calculation.firstValue();
     }
 }
